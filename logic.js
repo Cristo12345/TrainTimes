@@ -47,6 +47,29 @@ var firebaseConfig = {
     $("#destination-input").val("");
     $("#start-input").val("");
     $("#frequency-input").val("");
+  })
+
+
+  // event listener for child being added to DB
+  database.ref().on("child_added", function(childAdded) {
+
+    // storing info from DB in variables
+      var newTrain = childAdded.val().name;
+      var newDestination = childAdded.val().destination;
+      var newFrequency = childAdded.val().frequency;
+
+    //MUST ADD ALGORITHM FOR "NEXT TRAIN" AND "MINUTES AWAY"
+
+      // creating new rows for each DB update
+      var newRow = $("<tr>").append(
+        $("<td>").text(newTrain),
+        $("<td>").text(newDestination),
+        $("<td>").text(newFrequency),
+        $("<td>").text("00:00"),
+        $("<td>").text("0"));
+
+      $("#train-table").append(newRow);
+
 
 
   })
