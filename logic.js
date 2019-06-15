@@ -22,7 +22,7 @@ var firebaseConfig = {
   var trainNext = '';
   var minutesAway = 0;
 
-    // event listener  for submit button
+    // event listener for submit button
   $("#add-train-btn").on("click", function(event) {
 
     // prevent page from reloading on click
@@ -58,7 +58,27 @@ var firebaseConfig = {
       var newDestination = childAdded.val().destination;
       var newFrequency = childAdded.val().frequency;
 
-    //MUST ADD ALGORITHM FOR "NEXT TRAIN" AND "MINUTES AWAY"
+
+
+    // ADDED PSEUDOCODE OF ALGORITHM FOR "NEXT TRAIN" AND "MINUTES AWAY"
+    // if we put this in the DB-childAdded event listener, then the time will only be updated when a child is added
+    // might be better to create a function that updates the times every minute
+
+    // ALGORITHM:
+    // take frequency of train and first train time from user input
+    // take current time when someone visits the page
+    // using only these 3 pieces of information we can deduce when the next train is and how many minutes away it is
+
+    // Finding Next Train Time
+    // 1. Convert user's firstTrain time to unix to make it a single integer
+    // 2. Convert current time (moment()) to unix as well
+    // 3. Subtract the first train time from the current time
+    // 4. Use modulo (%) to find remainder of result and the frequency of the train. 
+    // If there is no remainder, then the train is at the station now. 
+    // Else, the next train is (Frequency - remainder) mins away
+
+
+
 
       // creating new rows for each DB update
       var newRow = $("<tr>").append(
